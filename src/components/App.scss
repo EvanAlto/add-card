@@ -1,0 +1,50 @@
+$card-number-translate: 0px;
+$cardholder-name-translate: -360px;
+$valid-thru-translate: -720;
+$security-code-translate: -1080px;
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 450px) {
+  .app {
+    width: 400px;
+    height: 500px;
+    border-radius: 25px;
+    margin: 20px;
+    box-shadow: 0px 5px 10px rgba(0,0,0,.1);
+  }
+}
+
+.app > * {
+  margin: 0px 20px;
+}
+
+.inputs-container {
+  display: flex;
+  align-self: flex-start;
+  transition: transform .5s linear;
+
+  &.card-number {
+    transform: translate($card-number-translate)
+  }
+
+  &.cardholder-name {
+    transform: translate($cardholder-name-translate)
+  }
+
+  &.valid-thru {
+    transform: translate($valid-thru-translate)
+  }
+
+  &.security-code {
+    transform: translate($security-code-translate)
+  }
+}

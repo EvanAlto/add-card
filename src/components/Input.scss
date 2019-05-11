@@ -1,0 +1,27 @@
+.input-container {
+  margin: 20px 0px;
+  color: #f3f3f3;
+  font-size: .75rem;
+
+  span {
+    margin: 5px;
+  }
+
+  input {
+    font-size: 1.25rem;
+    width: 350px;
+    padding: 10px 15px;
+    outline: none;
+    border: 1px solid;
+    border-radius: 5px;
+    border-color: #f3f3f3;
+    margin: 5px;
+  }
+
+  &.enabled {
+    color: #b3b3b3;
+    input {
+      border-color: #d3d3d3;
+    }
+  }
+}
