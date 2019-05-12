@@ -15,13 +15,13 @@ const App = () => {
   const handleButton = stage => {
     if (stage === 'card-number') {
       if (cardNumber.length === 16) setStage('cardholder-name')
-      else setError ('')
+      else setError ('Must be valid')
     } else if (stage === 'cardholder-name') {
       if (cardholderName.length > 0) setStage('valid-thru')
-      else setError('')
+      else setError('Must be valid')
     } else if (stage === 'valid-thru') {
       if (validThru.length === 4) setStage('security-code')
-      else setError('')
+      else setError('Must be valid')
     } else if (stage === 'security-code') {
       if (securityCode.length === 3) {
         setTimeout(() => setSecurityCode(''), 200)
@@ -30,14 +30,14 @@ const App = () => {
         setCardholderName('')
         setValidThru('')
       } else {
-        setError('')
+        setError('Must be valid')
       }
     }
   }
 
   return (
     <div className='app'>
-      <Card />
+      <Card stage={stage}/>
       <span className='headline'>Type in your card details:</span>
       <div className={`inputs-container ${stage}`}>
         <Input 
