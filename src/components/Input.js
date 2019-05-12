@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Input.scss'
 
 const Input = ({ className, stage, label, value, regex, setFunc }) => {
+  const [error, setError] = useState()
+
   function handleChange(event) {
     if (event.target.value.match(regex)) {
       setFunc(event.target.value)

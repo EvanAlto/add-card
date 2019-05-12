@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './App.scss'
-import { Card, Input, Button } from './'
+import { Card, Input } from './'
 
 const App = () => {
 
@@ -9,6 +9,31 @@ const App = () => {
   const [cardholderName, setCardholderName] = useState('')
   const [validThru, setValidThru] = useState('')
   const [securityCode, setSecurityCode] = useState('')
+  const [croak, setCroak] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleButton = stage => {
+    if (stage === 'card-number') {
+      if (cardNumber.length === 16) setStage('cardholder-name')
+      else setError ('')
+    } else if (stage === 'cardholder-name') {
+      if (cardholderName.length > 0) setStage('valid-thru')
+      else setError('')
+    } else if (stage === 'valid-thru') {
+      if (validThru.length === 4) setStage('security-code')
+      else setError('')
+    } else if (stage === 'security-code') {
+      if (securityCode.length === 3) {
+        setTimeout(() => setSecurityCode(''), 200)
+        setStage('card-number')
+        setCardNumber('')
+        setCardholderName('')
+        setValidThru('')
+      } else {
+        setError('')
+      }
+    }
+  }
 
   return (
     <div className='app'>
@@ -29,7 +54,7 @@ const App = () => {
           label='Cardholder Name'
           setFunc={setCardholderName}
           value={cardholderName}
-          regex={/^[a-z,A-Z]{0, 21}$/}
+          regex={/^[a-z,A-Z ]{0,21}$/}
         />
         <Input 
           stage={stage}
@@ -48,26 +73,17 @@ const App = () => {
           regex={/^[0-9]{0,3}$/}
         />
       </div>
-      <Button />
+      <button className={croak ? 'croak' : ''} 
+      onClick={() => { 
+        setCroak(true) 
+        handleButton(stage)
+      }} 
+      onAnimationEnd={() => setCroak(false)}
+      type='button'>
+        {stage === 'security-code' ? 'Done' : 'Next'}
+      </button> 
     </div>
   )
 }
 
 export default App
-
-//extract each input into a component, but each one needs to have a different onChange
-// handler with validation and calling of own hook
-
-// - card will be passed state from app, OR potential create a custom hook to use it..
-// however passing it down seems like the more sensical thing to do
-
-// - inputs-container will house multiple inputs for each part of card
-
-// - button will say Next or Done depending on state of app
-// and on done reset input state values, but that hooks should only be used top level..
-// so in an effect checking state? should you call hooks inside other hooks? that isn't
-// top level.. so custom hook then? clearly this needs more investigating cause
-// how else would you make certain updates and not others without using hooks
-// within conditionals. ONLY OTHER VALID PLACE TO CALL HOOKS IS IN CUSTOM HOOKS
-
-// two rules. Top Level Only, and only call hooks from react function components

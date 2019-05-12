@@ -1,6 +1,6 @@
 $card-number-translate: 0px;
 $cardholder-name-translate: -360px;
-$valid-thru-translate: -720;
+$valid-thru-translate: -720px;
 $security-code-translate: -1080px;
 
 .app {
@@ -11,26 +11,62 @@ $security-code-translate: -1080px;
   height: 100vh;
   background-color: #ffffff;
   overflow: hidden;
+
+  .headline {
+    align-self: flex-start;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 20px 25px 20px 25px;
+  }
+
+  button {
+    align-self: flex-end;
+    margin-top: 5px;
+    padding: 15px 20px;
+    margin: 5px 25px 20px 25px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    outline: none;
+    border: none;
+    color: #fefefe;
+    font-weight: 700;
+    font-size: 1.125rem;
+    background-image: linear-gradient(to right, #663ec3, #c13196);
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.croak {
+      animation: croak .5s ease;
+    }
+  }
+}
+
+@keyframes croak {
+  50% {
+    padding: 13px 18px;
+  }
 }
 
 @media screen and (min-width: 450px) {
   .app {
     width: 400px;
-    height: 500px;
+    height: 400px;
     border-radius: 25px;
     margin: 20px;
     box-shadow: 0px 5px 10px rgba(0,0,0,.1);
   }
 }
 
-.app > * {
-  margin: 0px 20px;
-}
-
 .inputs-container {
   display: flex;
   align-self: flex-start;
-  transition: transform .5s linear;
+  transition: transform .5s ease;
+  margin: 0px 20px;
+
 
   &.card-number {
     transform: translate($card-number-translate)
