@@ -24,15 +24,16 @@ const App = () => {
       else setError('Must be a valid month/year')
     } else if (stage === 'security-code') {
       if (securityCode.value.length === securityCode.max) {
-        setTimeout(() => setSecurityCode(''), 200)
+        setTimeout(() => setSecurityCode({ ...securityCode, value: '' }), 200)
         setStage('card-number')
-        setCardNumber('')
-        setCardholderName('')
-        setValidThru('')
+        setCardNumber({...cardNumber, value: ''})
+        setCardholderName({ ...cardholderName, value: '' })
+        setValidThru({ ...validThru, value: '' })
       } else {
         setError('Must be a valid security code')
       }
     }
+    setTimeout(() => document.querySelector('div.enabled input').focus(),200)
   }
 
   return (

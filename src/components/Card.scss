@@ -5,6 +5,39 @@
   margin: 20px 20px 20px 20px;
   border-radius: 15px;
   perspective: 1000px;
+
+  .card-number {
+    width: 100%;
+    position: absolute;
+    top: calc(50% - 1rem);
+    color: #949394;
+
+    .group {
+      display: flex;
+      position: absolute;
+      font-size: 2rem;
+
+      span.num {
+        color: #fefefe;
+        min-width: 18px;
+      }
+    }
+
+    .group-0 {
+      left: 15px;
+    }
+
+    .group-1 {
+      left: 100px;
+    }
+
+    .group-2 {
+      left: 185px;
+    }
+    .group-3 {
+      left: 270px;
+    }
+  }
 }
 
 .card, .face {
