@@ -1,3 +1,7 @@
+$activeColor: #fefefe;
+$inactiveColor: #949394;
+$svgColor: #61dafb;
+
 .card-container {
   font-family: 'Stylish', sans-serif;
   width: 360px;
@@ -7,36 +11,52 @@
   perspective: 1000px;
 
   .card-number {
-    width: 100%;
+    width: 95%;
+    height: 43px;
     position: absolute;
     top: calc(50% - 1rem);
-    color: #949394;
+    color: $inactiveColor;
 
     .group {
       display: flex;
       position: absolute;
       font-size: 2rem;
 
-      span.num {
-        color: #fefefe;
-        min-width: 18px;
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.num {
+          color: $activeColor;
+          min-width: 18px;
+        }
       }
     }
 
     .group-0 {
-      left: 15px;
+      left: 8px;
     }
 
     .group-1 {
-      left: 100px;
+      left: 93px;
     }
 
     .group-2 {
-      left: 185px;
+      left: 178px;
     }
     .group-3 {
-      left: 270px;
+      left: 263px;
     }
+  }
+
+  .not {
+    border: 1px solid transparent;
+  }
+
+  .current {
+    border: 1px solid #efca5e;
+    border-radius: 10px;
   }
 }
 
@@ -57,7 +77,7 @@
   background-color:#3e3d41;
 
   svg {
-    color: #f8a820;
+    color: $svgColor;
     font-size: 2rem;
   }
 }
