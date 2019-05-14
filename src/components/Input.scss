@@ -26,8 +26,11 @@
   }
 
   &.enabled.error {
+    span.error {
+      color: #D8000C;
+    }
     input {
-      border-color: red;
+      border-color: #D8000C;
     }
   }
 }

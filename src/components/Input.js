@@ -1,20 +1,23 @@
 import React from 'react'
 import './Input.scss'
 
-const Input = ({ className, stage, label, value, regex, setFunc }) => {
+const Input = ({ className, stage, label, value, regex, setFunc, error, setError }) => {
 
   function handleChange(event) {
     if (event.target.value.match(regex)) {
-      // setError('')
-      setFunc(event.target.value)
-    } else {
-      // setError('Numerical/Alphabetic characters only')
+      if (error) setError('')
+      setFunc({ ...value, value: event.target.value})
+    } else if (value.value.length !== value.max) {
+      setError('Valid characters only')
     }
   }
   return (
-    <div className={`input-container ${className === stage ? 'enabled' : 'disabled'}`}>
-      <span>{label}</span>
-      <input disabled={className === stage ? false : true } onChange={handleChange} value={value} />
+    <div className={`input-container ${className === stage ? 'enabled' : 'disabled'} ${error ? 'error' : ''}`}>
+      {/* <div className="labels"> */}
+        <span>{label}</span>
+        {error && <span className="error">{error}</span>}
+      {/* </div> */}
+      <input disabled={className === stage ? false : true } onChange={handleChange} value={value.value} />
     </div>
   )
 }
