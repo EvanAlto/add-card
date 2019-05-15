@@ -12,7 +12,7 @@ const Card = ({ stage, cardNumber, cardholderName, validThru, securityCode }) =>
     displayCardNum.slice(8, 12).split(''),
     displayCardNum.slice(12, 16).split('')
   ]
-  const validThruArr = displayValidThru.split('')
+  
   return (
     <div className='card-container'>
       <div className={`card ${stage === 'security-code' ? 'flipped' : ''}`}>
@@ -40,7 +40,7 @@ const Card = ({ stage, cardNumber, cardholderName, validThru, securityCode }) =>
           <div className="detail valid-thru">
             <span>VALID THRU</span>
             <span className={stage === 'valid-thru' ? 'active' : 'inactive'}>
-              {validThruArr.map((char, i) => {
+              {displayValidThru.split('').map((char, i) => {
                 if (validThru.value.includes(char) || (char === '/' && validThru.value.length >= 2)) {
                   return <span key={i} className="text">{char}</span>
                 } else {

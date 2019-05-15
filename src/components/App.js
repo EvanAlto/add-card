@@ -37,9 +37,11 @@ const App = () => {
   }
 
   const handleKey = event => {
-    if (event.key === 'Enter') handleButton(stage)
+    if (event.key === 'Enter') {
+      setCroak(true)
+      handleButton(stage)
+    }
   }
-
   return (
     <div className='app' onKeyDown={handleKey}>
       <Card stage={stage} 
