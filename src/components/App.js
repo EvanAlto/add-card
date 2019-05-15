@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './App.scss'
-import { Card, Input } from './'
+import { Card, Input , validateDate} from './'
 
 const App = () => {
 
@@ -20,7 +20,7 @@ const App = () => {
       if (cardholderName.value.length > 0) setStage('valid-thru')
       else setError('Must be a valid name')
     } else if (stage === 'valid-thru') {
-      if (validThru.value.length === validThru.max) setStage('security-code')
+      if (validThru.value.length === validThru.max && validateDate(validThru.value)) setStage('security-code')
       else setError('Must be a valid month/year')
     } else if (stage === 'security-code') {
       if (securityCode.value.length === securityCode.max) {

@@ -2,6 +2,10 @@ $card-number-translate: 0px;
 $cardholder-name-translate: -360px;
 $valid-thru-translate: -720px;
 $security-code-translate: -1080px;
+$mobile-card-number-translate: 0px;
+$mobile-cardholder-name-translate: -340px;
+$mobile-valid-thru-translate: -680px;
+$mobile-security-code-translate: -1020px;
 
 .app {
   display: flex;
@@ -73,6 +77,25 @@ $security-code-translate: -1080px;
 
 
   &.card-number {
+    transform: translate($mobile-card-number-translate)
+  }
+
+  &.cardholder-name {
+    transform: translate($mobile-cardholder-name-translate)
+  }
+
+  &.valid-thru {
+    transform: translate($mobile-valid-thru-translate)
+  }
+
+  &.security-code {
+    transform: translate($mobile-security-code-translate)
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .inputs-container {
+    &.card-number {
     transform: translate($card-number-translate)
   }
 
@@ -86,5 +109,6 @@ $security-code-translate: -1080px;
 
   &.security-code {
     transform: translate($security-code-translate)
+  }
   }
 }

@@ -8,7 +8,7 @@
 
   input {
     font-size: 1.25rem;
-    width: 350px;
+    width: 330px;
     padding: 10px 15px;
     outline: none;
     border: 1px solid;
@@ -31,6 +31,14 @@
     }
     input {
       border-color: #D8000C;
+    }
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .input-container {
+    input {
+      width: 350px;
     }
   }
 }

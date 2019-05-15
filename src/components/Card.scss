@@ -1,9 +1,12 @@
-$cardColor: #3e3d41;
-$activeColor: #fefefe;
-$inactiveColor: #949394;
-$svgColor: #61dafb;
-$activeBorder: 1px solid #efca5e;
-$inactiveBorder: 1px solid transparent;
+$card-color: #3e3d41;
+$active-color: #fefefe;
+$inactive-color: #949394;
+$svg-color: #61dafb;
+$active-border: 1px solid #efca5e;
+$inactive-border: 1px solid transparent;
+$cvv-strip-color-one:#fff3dd;
+$cvv-strip-color-two:#e6efff;
+
 
 .card-container {
   font-family: 'Stylish', sans-serif;
@@ -14,11 +17,11 @@ $inactiveBorder: 1px solid transparent;
   perspective: 1000px;
 
   .inactive {
-    border: $inactiveBorder;
+    border: $inactive-border;
   }
 
   .active {
-    border: $activeBorder;
+    border: $active-border;
   }
 }
 
@@ -36,10 +39,10 @@ $inactiveBorder: 1px solid transparent;
   position: absolute;
   backface-visibility: hidden;  
   border-radius:15px;
-  background-color: $cardColor;
+  background-color: $card-color;
 
   svg {
-    color: $svgColor;
+    color: $svg-color;
     font-size: 2rem;
   }
 }
@@ -61,7 +64,7 @@ $inactiveBorder: 1px solid transparent;
     height: 43px;
     position: absolute;
     top: calc(50% - 1rem);
-    color: $inactiveColor;
+    color: $inactive-color;
     border-radius: 10px;
 
     .group {
@@ -74,7 +77,7 @@ $inactiveBorder: 1px solid transparent;
         justify-content: center;
 
         &.num {
-          color: $activeColor;
+          color: $active-color;
           min-width: 18px;
         }
       }
@@ -99,7 +102,7 @@ $inactiveBorder: 1px solid transparent;
   .detail {
     display: flex;
     flex-direction: column;
-    color: $inactiveColor;
+    color: $inactive-color;
     text-transform: uppercase;
 
     &.cardholder-name,
@@ -112,7 +115,7 @@ $inactiveBorder: 1px solid transparent;
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
         font-size: .75rem;
-        color: $activeColor;
+        color: $active-color;
       }
 
       > :last-child {
@@ -124,7 +127,7 @@ $inactiveBorder: 1px solid transparent;
 
         &.text,
         .text {
-          color: $activeColor;
+          color: $active-color;
         }
       }
     }
@@ -141,7 +144,7 @@ $inactiveBorder: 1px solid transparent;
     &.valid-thru {
       padding-left: 10px;
       right: 20px;
-      background-color: $cardColor;
+      background-color: $card-color;
       display: flex;
       min-width: 10px;
 
@@ -161,11 +164,47 @@ $inactiveBorder: 1px solid transparent;
   transform: rotateY(-180deg);
   box-shadow: 0px 0px 0px #aaa;
 
-  div {
+  .security-code {
     position: absolute;
     top: 45%;
     right: 25%;
-    background-color: #fefefe;
+    border-radius: 5px;
+
+    div {
+      padding: 5px 10px;
+      background-color: #fefefe;
+      border-radius: 2.5px;
+      margin: 2px;
+      display: flex;
+
+      :before {
+        top: -3px;
+        left: -196px;
+        position: absolute;
+        content: '';
+        height: 40px;
+        background: linear-gradient(to top,
+          $cvv-strip-color-one 12.5%,
+          $cvv-strip-color-two 12.5% 25%,
+          $cvv-strip-color-one 12.5% 37.5%,
+          $cvv-strip-color-two 12.5% 50%,
+          $cvv-strip-color-one 12.5% 62.5%,
+          $cvv-strip-color-two 12.5% 75%,
+          $cvv-strip-color-one 12.5% 87.5%,
+          $cvv-strip-color-two 12.5% 100%
+        );
+        width: 195px;
+      }
+
+      span {
+        display: flex;
+        color: $inactive-color;
+        &.num {
+          min-width: 9px;
+          color: #010101;
+        }
+      }
+    }
   }
 
   svg {
