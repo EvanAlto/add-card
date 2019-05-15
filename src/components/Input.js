@@ -13,10 +13,8 @@ const Input = ({ className, stage, label, value, regex, setFunc, error, setError
   }
   return (
     <div className={`input-container ${className === stage ? 'enabled' : 'disabled'} ${error ? 'error' : ''}`}>
-      {/* <div className="labels"> */}
         <span>{label}</span>
         {error && <span className="error">{error}</span>}
-      {/* </div> */}
       <input disabled={className === stage ? false : true } onChange={handleChange} value={value.value} />
     </div>
   )
