@@ -1,6 +1,9 @@
+$cardColor: #3e3d41;
 $activeColor: #fefefe;
 $inactiveColor: #949394;
 $svgColor: #61dafb;
+$activeBorder: 1px solid #efca5e;
+$inactiveBorder: 1px solid transparent;
 
 .card-container {
   font-family: 'Stylish', sans-serif;
@@ -10,12 +13,56 @@ $svgColor: #61dafb;
   border-radius: 15px;
   perspective: 1000px;
 
+  .inactive {
+    border: $inactiveBorder;
+  }
+
+  .active {
+    border: $activeBorder;
+  }
+}
+
+.card, .face {
+  width:100%;
+  height:100%;
+  transition: all .5s linear;
+}
+
+.card {
+  transform-style: preserve-3d;
+}
+
+.face {
+  position: absolute;
+  backface-visibility: hidden;  
+  border-radius:15px;
+  background-color: $cardColor;
+
+  svg {
+    color: $svgColor;
+    font-size: 2rem;
+  }
+}
+
+.front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 5px 10px #aaa;
+
+  svg {
+    align-self: flex-end;
+    margin: 15px 20px 20px 20px;
+  }
+
   .card-number {
     width: 95%;
     height: 43px;
     position: absolute;
     top: calc(50% - 1rem);
     color: $inactiveColor;
+    border-radius: 10px;
 
     .group {
       display: flex;
@@ -24,7 +71,6 @@ $svgColor: #61dafb;
 
       span {
         display: flex;
-        align-items: center;
         justify-content: center;
 
         &.num {
@@ -50,55 +96,77 @@ $svgColor: #61dafb;
     }
   }
 
-  .not {
-    border: 1px solid transparent;
+  .detail {
+    display: flex;
+    flex-direction: column;
+    color: $inactiveColor;
+    text-transform: uppercase;
+
+    &.cardholder-name,
+    &.valid-thru {
+      position: absolute;
+      bottom: 25px;
+
+      > :first-child {
+         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+        font-size: .75rem;
+        color: $activeColor;
+      }
+
+      > :last-child {
+        align-self: flex-start;
+        border-radius: 5px;
+        padding: 0px 5px;
+        margin-left: -5px;
+        display: flex;
+
+        &.text,
+        .text {
+          color: $activeColor;
+        }
+      }
+    }
+
+    &.cardholder-name {
+      position: absolute;
+      left: 20px;
+
+      :last-child {
+        margin-left: -5px;
+      }
+    }
+
+    &.valid-thru {
+      padding-left: 10px;
+      right: 20px;
+      background-color: $cardColor;
+      display: flex;
+      min-width: 10px;
+
+      > :last-child {
+        span {
+          display: flex;
+          min-width: 12px;
+        }
+      }
+    }
   }
 
-  .current {
-    border: 1px solid #efca5e;
-    border-radius: 10px;
-  }
-}
-
-.card, .face {
-  width:100%;
-  height:100%;
-  transition: all .5s linear;
-}
-
-.card {
-  transform-style: preserve-3d;
-}
-
-.face {
-  position: absolute;
-  backface-visibility: hidden;  
-  border-radius:15px;
-  background-color:#3e3d41;
-
-  svg {
-    color: $svgColor;
-    font-size: 2rem;
-  }
-}
-
-.front{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0px 5px 10px #aaa;
-
-  svg {
-    align-self: flex-end;
-    margin: 15px 20px 20px 20px;
-  }
 }
 
 .back {
   overflow:hidden;
   transform: rotateY(-180deg);
   box-shadow: 0px 0px 0px #aaa;
+
+  div {
+    position: absolute;
+    top: 45%;
+    right: 25%;
+    background-color: #fefefe;
+  }
 
   svg {
     position: absolute;

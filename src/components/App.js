@@ -36,8 +36,12 @@ const App = () => {
     setTimeout(() => document.querySelector('div.enabled input').focus(),200)
   }
 
+  const handleKey = event => {
+    if (event.key === 'Enter') handleButton(stage)
+  }
+
   return (
-    <div className='app'>
+    <div className='app' onKeyDown={handleKey}>
       <Card stage={stage} 
         cardNumber={cardNumber} 
         cardholderName={cardholderName}
